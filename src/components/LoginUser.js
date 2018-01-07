@@ -12,13 +12,18 @@ class CreateLogin extends React.Component {
   authenticateUser = async () => {
     const { email, password } = this.state;
 
-    const response = await this.props.authenticateUserMutation({ variables: { email, password } });
-    localStorage.setItem('graphcoolToken', response.data.authenticateUser.token);
-    this.props.history.replace('/');
+    // const response = await this.props.authenticateUserMutation({ variables: { email, password } });
+    // console.log('response', response);
+    this.props
+      .authenticateUserMutation({ variables: { email, password } })
+      .then(data => console.log('data', data));
+
+    // localStorage.setItem('graphcoolToken', response.data.authenticateUser.token);
+    // this.props.history.replace('/');
   };
 
   render() {
-    if (this.props.data.loading) {
+    if (this.props.loggedInUserQuery.loading) {
       return (
         <div className="w-100 pa4 flex justify-center">
           <div>Loading</div>
@@ -27,7 +32,7 @@ class CreateLogin extends React.Component {
     }
 
     // redirect if user is logged in
-    if (this.props.data.loggedInUser.id) {
+    if (this.props.loggedInUserQuery.loggedInUser.id) {
       console.warn('already logged in');
       this.props.history.replace('/');
     }

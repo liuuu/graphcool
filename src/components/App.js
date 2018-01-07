@@ -27,7 +27,9 @@ class App extends React.Component {
   renderLoggedIn() {
     return (
       <div>
-        <span>User ID: {this.props.loggedInUserQuery.loggedInUser.id}</span>
+        <span>User Email: {this.props.loggedInUserQuery.loggedInUser.email}</span>
+        <span>User Name: {this.props.loggedInUserQuery.loggedInUser.name}</span>
+
         <div className="pv3">
           <span className="dib bg-red white pa3 pointer dim" onClick={this._logout}>
             Logout
@@ -75,11 +77,25 @@ const LOGGED_IN_USER_QUERY = gql`
   query LoggedInUserQuery {
     loggedInUser {
       id
+      email
+      name
     }
   }
 `;
 
-// check if loggedIn
+// function render(){
+//   if(this.props.loggedInUserQuery.id&&this.props.loggedInUserQuery.id!==null)
+// }
+
+// function loggedInUser(event) {
+//   if (!event.context.auth || !event.context.auth.nodeId) {
+//     return {
+//       data: {
+//         id: null,
+//       },
+//     };
+//   }
+// }
 
 export default graphql(LOGGED_IN_USER_QUERY, {
   name: 'loggedInUserQuery',
