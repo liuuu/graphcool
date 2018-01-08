@@ -35,7 +35,7 @@ class ListPage extends React.Component {
   subscription = () => {
     console.log('called subscribeToMore');
 
-    this.props.allPostsQuery.subscribeToMore({
+    return this.props.allPostsQuery.subscribeToMore({
       document: SUBSCRIPTION_ALL_POST,
       variables: null,
       updateQuery: (previousState, { subscriptionData }) => {
