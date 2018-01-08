@@ -12,14 +12,14 @@ class CreateLogin extends React.Component {
   authenticateUser = async () => {
     const { email, password } = this.state;
 
-    // const response = await this.props.authenticateUserMutation({ variables: { email, password } });
-    // console.log('response', response);
-    this.props
-      .authenticateUserMutation({ variables: { email, password } })
-      .then(data => console.log('data', data));
+    const response = await this.props.authenticateUserMutation({ variables: { email, password } });
+    console.log('response', response);
+    // this.props
+    //   .authenticateUserMutation({ variables: { email, password } })
+    //   .then(data => console.log('data', data));
 
-    // localStorage.setItem('graphcoolToken', response.data.authenticateUser.token);
-    // this.props.history.replace('/');
+    localStorage.setItem('graphcoolToken', response.data.authenticateUser.token);
+    this.props.history.replace('/');
   };
 
   render() {

@@ -60,6 +60,8 @@ const CREATE_POST_MUTATION = gql`
   mutation CreatePostMutation($description: String!, $imageUrl: String!, $authorId: ID!) {
     createPost(description: $description, imageUrl: $imageUrl, authorId: $authorId) {
       id
+      imageUrl
+      description
     }
   }
 `;
